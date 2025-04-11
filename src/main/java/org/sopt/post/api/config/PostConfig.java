@@ -3,7 +3,6 @@ package org.sopt.post.api.config;
 import org.sopt.post.api.controller.PostController;
 import org.sopt.post.api.controller.PostValidator;
 import org.sopt.post.api.service.PostService;
-import org.sopt.post.service.*;
 import org.sopt.post.core.repository.PostBasicRepository;
 import org.sopt.post.core.service.PostRemover;
 import org.sopt.post.core.service.PostRetriever;
