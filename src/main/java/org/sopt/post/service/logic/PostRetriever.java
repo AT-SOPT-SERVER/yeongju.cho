@@ -1,14 +1,14 @@
 package org.sopt.post.service.logic;
 
 import org.sopt.post.domain.Post;
-import org.sopt.post.repository.PostBasicRepository;
+import org.sopt.post.repository.PostRepository;
 
 import java.util.List;
 
 public class PostRetriever {
-    private final PostBasicRepository postRepository;
+    private final PostRepository postRepository;
 
-    public PostRetriever(PostBasicRepository postRepository) {
+    public PostRetriever(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 

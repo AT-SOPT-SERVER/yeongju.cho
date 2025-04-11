@@ -1,11 +1,11 @@
 package org.sopt.post.service.logic;
 
-import org.sopt.post.repository.PostBasicRepository;
+import org.sopt.post.repository.PostRepository;
 
 public class PostRemover {
-    private final PostBasicRepository postRepository;
+    private final PostRepository postRepository;
 
-    public PostRemover(PostBasicRepository postRepository) {
+    public PostRemover(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
