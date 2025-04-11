@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PostBasicRepository implements PostRepository {
 
-    final Map<Integer, Post> storage = new ConcurrentHashMap<>();
+    private final Map<Integer, Post> storage = new ConcurrentHashMap<>();
 
     @Override
     public void save(final Post post) {
@@ -23,17 +23,17 @@ public class PostBasicRepository implements PostRepository {
     }
 
     @Override
-    public Post getPostById(int id) {
+    public Post getPostById(final int id) {
         return storage.get(id);
     }
 
     @Override
-    public void update(Post post, String newTitle) {
+    public void update(final Post post, final String newTitle) {
         post.updateTitle(newTitle);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(final int id) {
         storage.remove(id);
     }
 
@@ -49,12 +49,12 @@ public class PostBasicRepository implements PostRepository {
     }
 
     @Override
-    public boolean existsById(int id) {
+    public boolean existsById(final int id) {
         return storage.containsKey(id);
     }
 
     @Override
-    public boolean existByTitle(String title) {
+    public boolean existByTitle(final String title) {
         for (Post post : storage.values()) {
             if (post.getTitle().equals(title)) {
                 return true;
