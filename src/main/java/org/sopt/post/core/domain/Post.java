@@ -9,6 +9,10 @@ public class Post {
         this.title = title;
     }
 
+    public Post(String title) {
+        this.title = title;
+    }
+
     public int getId() {
         return this.id;
     }
