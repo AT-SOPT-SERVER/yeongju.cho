@@ -1,6 +1,6 @@
-package org.sopt.post.controller;
+package org.sopt.post.api.controller;
 
-import org.sopt.post.service.PostService;
+import org.sopt.post.api.service.PostService;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

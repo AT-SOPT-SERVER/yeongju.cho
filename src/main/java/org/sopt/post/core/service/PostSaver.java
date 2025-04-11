@@ -1,7 +1,7 @@
-package org.sopt.post.service.logic;
+package org.sopt.post.core.service;
 
-import org.sopt.post.domain.Post;
-import org.sopt.post.repository.PostRepository;
+import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.repository.PostRepository;
 
 public class PostSaver {
     private final PostRepository postRepository;
@@ -10,7 +10,7 @@ public class PostSaver {
         this.postRepository = postRepository;
     }
 
-    public void save(Post post) {
+    public void save(final Post post) {
         postRepository.save(post);
     }
 }

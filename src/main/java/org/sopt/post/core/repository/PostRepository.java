@@ -1,11 +1,11 @@
-package org.sopt.post.repository;
+package org.sopt.post.core.repository;
 
-import org.sopt.post.domain.Post;
+import org.sopt.post.core.domain.Post;
 
 import java.util.List;
 
 public interface PostRepository {
-    public void save(final Post post);
+    public void save(Post post);
     public List<Post> findAll();
     public Post getPostById(int id);
     public void update(Post post, String newTitle);

@@ -1,6 +1,6 @@
-package org.sopt.post.service.logic;
+package org.sopt.post.core.service;
 
-import org.sopt.post.repository.PostRepository;
+import org.sopt.post.core.repository.PostRepository;
 
 public class PostRemover {
     private final PostRepository postRepository;
@@ -9,7 +9,7 @@ public class PostRemover {
         this.postRepository = postRepository;
     }
 
-    public void delete(int id) {
+    public void delete(final int id) {
         postRepository.delete(id);
     }
 }

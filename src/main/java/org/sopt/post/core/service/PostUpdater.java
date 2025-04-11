@@ -1,7 +1,7 @@
-package org.sopt.post.service.logic;
+package org.sopt.post.core.service;
 
-import org.sopt.post.domain.Post;
-import org.sopt.post.repository.PostRepository;
+import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.repository.PostRepository;
 
 public class PostUpdater {
     private final PostRepository postRepository;
@@ -10,7 +10,7 @@ public class PostUpdater {
         this.postRepository = postRepository;
     }
 
-    public void update(Post post, String newTitle) {
+    public void update(final Post post, final String newTitle) {
         postRepository.update(post, newTitle);
     }
 }
