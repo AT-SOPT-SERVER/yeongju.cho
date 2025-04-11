@@ -1,7 +1,7 @@
-package org.sopt.post.controller;
+package org.sopt.post.api.controller;
 
-import org.sopt.post.domain.Post;
-import org.sopt.post.service.PostService;
+import org.sopt.post.core.domain.Post;
+import org.sopt.post.api.service.PostService;
 
 import java.util.List;
 
@@ -22,22 +22,22 @@ public class PostController {
         return postService.getAllPosts();
     }
 
-    public Post getPostById(int id) {
+    public Post getPostById(final int id) {
         return postService.getPostById(id);
     }
-    public Boolean updatePostTitle(int id, String newTitle) {
+    public Boolean updatePostTitle(final int id, final String newTitle) {
         return postService.updatePostTitle(id, newTitle);
     }
 
-    public boolean deletePostById(int id) {
+    public boolean deletePostById(final int id) {
         return postService.deletePostById(id);
     }
 
-    public List<Post> searchPostsByKeyword(String keyword) {
+    public List<Post> searchPostsByKeyword(final String keyword) {
         return postService.searchPostsByKeyword(keyword);
     }
 
-    public boolean validateTitle(String title) {
+    public boolean validateTitle(final String title) {
         return postValidator.validateTitle(title);
     }
 }

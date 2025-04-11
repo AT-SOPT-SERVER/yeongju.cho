@@ -1,6 +1,6 @@
-package org.sopt.post.repository;
+package org.sopt.post.core.repository;
 
-import org.sopt.post.domain.Post;
+import org.sopt.post.core.domain.Post;
 
 
 import java.util.ArrayList;

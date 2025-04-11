@@ -1,4 +1,4 @@
-package org.sopt.post.domain;
+package org.sopt.post.core.domain;
 
 public class Post {
     private int id;

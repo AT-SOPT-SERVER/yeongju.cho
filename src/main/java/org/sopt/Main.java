@@ -3,9 +3,9 @@ package org.sopt;
 import java.util.List;
 import java.util.Scanner;
 
-import org.sopt.post.config.PostConfig;
-import org.sopt.post.controller.PostController;
-import org.sopt.post.domain.Post;
+import org.sopt.post.api.config.PostConfig;
+import org.sopt.post.api.controller.PostController;
+import org.sopt.post.core.domain.Post;
 
 public class Main {
 

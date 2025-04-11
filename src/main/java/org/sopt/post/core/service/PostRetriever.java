@@ -1,7 +1,7 @@
-package org.sopt.post.service.logic;
+package org.sopt.post.core.service;
 
-import org.sopt.post.domain.Post;
-import org.sopt.post.repository.PostRepository;
+import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.repository.PostRepository;
 
 import java.util.List;
 
@@ -16,19 +16,19 @@ public class PostRetriever {
         return postRepository.findAll();
     }
 
-    public boolean existsById(int id) {
+    public boolean existsById(final int id) {
         return postRepository.existsById(id);
     }
 
-    public Post getPostById(int id) {
+    public Post getPostById(final int id) {
         return postRepository.getPostById(id);
     }
 
-    public List<Post> searchPostsByKeyword(String keyword) {
+    public List<Post> searchPostsByKeyword(final String keyword) {
         return postRepository.searchPostsByKeyword(keyword);
     }
 
-    public boolean existByTitle(String title) {
+    public boolean existByTitle(final String title) {
         return postRepository.existByTitle(title);
     }
 }
