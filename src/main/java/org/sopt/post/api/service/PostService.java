@@ -29,9 +29,7 @@ public class PostService {
 //        if (!checkLatest3Minute()) {
 //            return false;
 //        }
-
-        int id = IdGenerator.generateId();
-        Post post = new Post(id, title);
+        Post post = new Post(title);
         postSaver.save(post);
         lastCreateTime = LocalDateTime.now();
         return true;

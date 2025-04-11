@@ -1,5 +1,6 @@
 package org.sopt.post.core.repository;
 
+import org.sopt.common.IdGenerator;
 import org.sopt.post.core.domain.Post;
 
 
@@ -14,7 +15,8 @@ public class PostBasicRepository implements PostRepository {
 
     @Override
     public void save(final Post post) {
-        storage.put(post.getId(), post);
+        int id = IdGenerator.generateId();
+        storage.put(id, new Post(id, post.getTitle()));
     }
 
     @Override
