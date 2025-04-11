@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class PostValidator {
 
     private static final int MAX_LENGTH = 30;
-    private static final String regex = "\\X";
+    private static final Pattern graphemePattern = Pattern.compile("\\X");
 
     private final PostService postService;
     public PostValidator(PostService postService) {
@@ -36,9 +36,7 @@ public class PostValidator {
     }
 
     public static int countGraphemeClusters(String body) {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(body);
-
+        Matcher matcher = graphemePattern.matcher(body);
         int count = 0;
         while (matcher.find()) {
             count++;
