@@ -27,7 +27,7 @@ public class Main {
                     System.out.println("\n📝 [게시글 작성]");
                     System.out.print("📌 제목을 입력해주세요: ");
                     String title = scanner.nextLine();
-                    if (controller.validateTitle(title)) {
+                    if (controller.createPost(title)) {
                         boolean created = controller.createPost(title);
                         if (created) {
                             System.out.println("✅ 게시글이 성공적으로 저장되었습니다!");
@@ -68,7 +68,7 @@ public class Main {
                     int updateId = Integer.parseInt(scanner.nextLine());
                     System.out.print("📝 새 제목을 입력해주세요: ");
                     String newTitle = scanner.nextLine();
-                    if (controller.validateTitle(newTitle)) {
+                    if (controller.createPost(newTitle)) {
                         boolean updated = controller.updatePostTitle(updateId, newTitle);
                         if (updated) {
                             System.out.println("✅ 게시글이 성공적으로 수정되었습니다.");
