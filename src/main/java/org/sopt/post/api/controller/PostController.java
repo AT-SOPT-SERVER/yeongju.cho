@@ -7,11 +7,9 @@ import java.util.List;
 
 public class PostController {
     private final PostService postService;
-    private final PostValidator postValidator;
 
-    public PostController(PostService postService, PostValidator postValidator) {
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.postValidator = postValidator;
     }
 
     public boolean createPost(final String title) {
@@ -35,9 +33,5 @@ public class PostController {
 
     public List<Post> searchPostsByKeyword(final String keyword) {
         return postService.searchPostsByKeyword(keyword);
-    }
-
-    public boolean validateTitle(final String title) {
-        return postValidator.validateTitle(title);
     }
 }

@@ -1,6 +1,5 @@
 package org.sopt.post.api.service;
 
-import org.sopt.common.IdGenerator;
 import org.sopt.post.core.domain.Post;
 import org.sopt.post.core.service.PostRemover;
 import org.sopt.post.core.service.PostRetriever;
@@ -29,6 +28,10 @@ public class PostService {
 //        if (!checkLatest3Minute()) {
 //            return false;
 //        }
+        if (postRetriever.existByTitle(title)) {
+            System.out.println("❌ 이미 해당 제목의 게시글이 존재합니다. 제목은 중복될 수 없습니다.");
+            return false;
+        }
         Post post = new Post(title);
         postSaver.save(post);
         lastCreateTime = LocalDateTime.now();
