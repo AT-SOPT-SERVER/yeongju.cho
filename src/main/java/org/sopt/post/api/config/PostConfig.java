@@ -1,7 +1,6 @@
 package org.sopt.post.api.config;
 
 import org.sopt.post.api.controller.PostController;
-import org.sopt.post.api.controller.PostValidator;
 import org.sopt.post.api.service.PostService;
 import org.sopt.post.core.repository.PostBasicRepository;
 import org.sopt.post.core.service.PostRemover;
@@ -19,12 +18,11 @@ public class PostConfig {
         PostRemover postRemover = new PostRemover(postRepository);
         PostUpdater postUpdater = new PostUpdater(postRepository);
         PostService postService = new PostService(
-                new PostRemover(postRepository),
-                new PostRetriever(postRepository),
-                new PostSaver(postRepository),
-                new PostUpdater(postRepository)
+                postRemover,
+                postRetriever,
+                postSaver,
+                postUpdater
         );
-        PostValidator postValidator = new PostValidator(postService);
-        return new PostController(postService, postValidator);
+        return new PostController(postService);
     }
 }
