@@ -1,7 +1,10 @@
 package org.sopt.post.core.service;
 
+import org.sopt.post.core.domain.PostEntity;
 import org.sopt.post.core.repository.PostRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PostRemover {
     private final PostRepository postRepository;
 
@@ -9,7 +12,9 @@ public class PostRemover {
         this.postRepository = postRepository;
     }
 
-    public void delete(final int id) {
-        postRepository.delete(id);
+    public void deletePost(
+            final PostEntity postEntity
+    ) {
+        postRepository.delete(postEntity);
     }
 }
