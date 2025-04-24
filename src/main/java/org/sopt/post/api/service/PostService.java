@@ -1,14 +1,25 @@
 package org.sopt.post.api.service;
 
+import org.sopt.post.api.dto.request.PostUpdateDto;
+import org.sopt.post.api.dto.response.PostListResponse;
+import org.sopt.post.api.exception.PostConflictException;
+import org.sopt.post.api.exception.PostApiErrorCode;
 import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.domain.PostEntity;
+import org.sopt.post.core.exception.PostDuplicatedException;
+import org.sopt.post.api.dto.request.PostCreateDto;
 import org.sopt.post.core.service.PostRemover;
 import org.sopt.post.core.service.PostRetriever;
 import org.sopt.post.core.service.PostSaver;
 import org.sopt.post.core.service.PostUpdater;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
+@Transactional(readOnly = true)
 public class PostService {
 
     private LocalDateTime lastCreateTime = null;
@@ -17,66 +28,61 @@ public class PostService {
     private final PostUpdater postUpdater;
     private final PostSaver postSaver;
 
-    public PostService(PostRemover postRemover, PostRetriever postRetriever, PostSaver postSaver, PostUpdater postUpdater) {
+    public PostService(PostRemover postRemover, PostRetriever postRetriever, PostUpdater postUpdater, PostSaver postSaver) {
         this.postRemover = postRemover;
         this.postRetriever = postRetriever;
         this.postUpdater = postUpdater;
         this.postSaver = postSaver;
     }
 
-    public boolean createPost(final String title) {
+    @Transactional
+    public int createPost(PostCreateDto postCreateDto) {
+
 //        if (!checkLatest3Minute()) {
-//            return false;
+//            throw new PostConflictException(PostErrorCode.CONFLICT_CREATE_LIMIT);
 //        }
-        if (postRetriever.existByTitle(title)) {
-            System.out.println("❌ 이미 해당 제목의 게시글이 존재합니다. 제목은 중복될 수 없습니다.");
-            return false;
+
+        final Post createPost;
+
+        try {
+            createPost = postSaver.save(postCreateDto.title());
+        } catch (PostDuplicatedException e) {
+            throw new PostConflictException(PostApiErrorCode.CONFLICT_DUPLICATE_TITLE);
         }
-        Post post = new Post(title);
-        postSaver.save(post);
         lastCreateTime = LocalDateTime.now();
-        return true;
+        return createPost.getId();
     }
 
     public boolean checkLatest3Minute() {
+        if (lastCreateTime == null) return true;
+
         LocalDateTime now = LocalDateTime.now();
-        return lastCreateTime == null ||
-                java.time.Duration.between(lastCreateTime, now).getSeconds() >= 180;
+        return java.time.Duration.between(lastCreateTime, now).getSeconds() >= 180;
     }
 
-    public List<Post> getAllPosts() {
-        return postRetriever.findAll();
+    public Post getPostDetails(final int postId) {
+        return postRetriever.findById(postId);
     }
 
-    public Post getPostById(final int id) {
-        if (!postRetriever.existsById(id)) {
-            return null;
-        }
-        return postRetriever.getPostById(id);
+    public PostListResponse getAllPosts() {
+        List<PostListResponse.PostDto> posts = postRetriever.findAllPosts();
+        return new PostListResponse(posts);
     }
 
-    public boolean updatePostTitle(final int id, final String newTitle) {
-        Post post = postRetriever.getPostById(id);
-        if (post == null) {
-            return false;
-        }
-        postUpdater.update(post, newTitle);
-        return true;
+    @Transactional
+    public void updatePostTitle (
+            final int postId,
+            final PostUpdateDto postUpdateDto
+    ) {
+        PostEntity postEntity = postRetriever.findEntityById(postId);
+        postUpdater.updatePost(postEntity, postUpdateDto);
     }
 
-    public boolean deletePostById(final int id) {
-        if (!postRetriever.existsById(id)) {
-            return false;
-        }
-        postRemover.delete(id);
-        return true;
-    }
-
-    public List<Post> searchPostsByKeyword(final String keyword) {
-        return postRetriever.searchPostsByKeyword(keyword);
-    }
-
-    public boolean existByTitle(final String title) {
-        return postRetriever.existByTitle(title);
+    @Transactional
+    public void deletePost (
+            final int postId
+    ) {
+        PostEntity postEntity = postRetriever.findEntityById(postId);
+        postRemover.deletePost(postEntity);
     }
 }

@@ -1,10 +1,16 @@
 package org.sopt.post.core.service;
 
+import org.sopt.post.api.dto.response.PostListResponse;
 import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.domain.PostEntity;
+import org.sopt.post.core.exception.PostCoreErrorCode;
+import org.sopt.post.core.exception.PostNotFoundException;
 import org.sopt.post.core.repository.PostRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class PostRetriever {
     private final PostRepository postRepository;
 
@@ -12,23 +18,21 @@ public class PostRetriever {
         this.postRepository = postRepository;
     }
 
-    public List<Post> findAll(){
-        return postRepository.findAll();
+    public Post findById(final int postId) {
+        final PostEntity postEntity = postRepository.findById(postId)
+                .orElseThrow(()-> new PostNotFoundException(PostCoreErrorCode.NOT_FOUND_POST));
+        return Post.fromEntity(postEntity);
     }
 
-    public boolean existsById(final int id) {
-        return postRepository.existsById(id);
+    public PostEntity findEntityById(final int postId) {
+        return postRepository.findById(postId)
+                .orElseThrow(()-> new PostNotFoundException(PostCoreErrorCode.NOT_FOUND_POST));
     }
 
-    public Post getPostById(final int id) {
-        return postRepository.getPostById(id);
-    }
-
-    public List<Post> searchPostsByKeyword(final String keyword) {
-        return postRepository.searchPostsByKeyword(keyword);
-    }
-
-    public boolean existByTitle(final String title) {
-        return postRepository.existByTitle(title);
+    public List<PostListResponse.PostDto> findAllPosts(){
+        return postRepository.findAll().stream()
+                .map(Post::fromEntity)
+                .map(PostListResponse.PostDto::from)
+                .toList();
     }
 }
