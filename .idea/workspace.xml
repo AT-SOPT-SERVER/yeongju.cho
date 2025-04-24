@@ -4,7 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="" />
+    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="[refac] Validator 책임 분리">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/ResponseDtoAdvice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/ApiCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/ErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/GlobalErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/SuccessCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/constants/PostTableConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/response/ResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostCreateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostDetailsResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostListResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostConflictException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/PostEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostCoreErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostCoreException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostDuplicatedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/common/IdGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/config/PostConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/utils/PostValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostBasicRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostFileRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRemover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRetriever.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostUpdater.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,28 +55,98 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="mooserver" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2vGGfnYNdTGSXaJknvVNZ8LlOm4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build mooserver.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mooserver [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mooserver.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;seminar2&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.sopt.Main" />
+      <module name="mooserver.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.sopt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="mooserver.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.sopt.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Spring Boot.Main" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,10 +155,52 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1743764102740</updated>
+      <workItem from="1745304793682" duration="9222000" />
+      <workItem from="1745314054220" duration="21257000" />
+      <workItem from="1745341984337" duration="67000" />
+      <workItem from="1745368099369" duration="4247000" />
+      <workItem from="1745501009489" duration="2277000" />
     </task>
+    <task id="LOCAL-00001" summary="[refac] 객체 한 번씩만 생성하도록 수정">
+      <option name="closed" value="true" />
+      <created>1745246033597</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745246033597</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[refac] Validator 책임 분리">
+      <option name="closed" value="true" />
+      <created>1745246080099</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1745246080099</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[refac] 객체 한 번씩만 생성하도록 수정" />
+    <MESSAGE value="[refac] Validator 책임 분리" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refac] Validator 책임 분리" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
