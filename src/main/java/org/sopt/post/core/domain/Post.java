@@ -1,28 +1,26 @@
 package org.sopt.post.core.domain;
 
 public class Post {
-    private int id;
-    private String title;
+    private final int id;
+    private final String title;
 
     public Post(int id, String title) {
         this.id = id;
         this.title = title;
     }
 
-    public Post(String title) {
-        this.title = title;
-    }
-
-    public int getId() {
-        return this.id;
+    public int getId(){
+        return id;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
-    public void updateTitle(String newTitle) {
-        this.title = newTitle;
+    public static Post fromEntity(final PostEntity postEntity) {
+        return new Post(
+                postEntity.getId(),
+                postEntity.getTitle()
+        );
     }
-
 }
