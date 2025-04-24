@@ -1,10 +1,19 @@
 package org.sopt.post.api.controller;
 
-import org.sopt.post.core.domain.Post;
+import jakarta.validation.Valid;
+import org.sopt.post.api.dto.request.PostCreateDto;
+import org.sopt.post.api.dto.response.PostDetailsResponse;
+import org.sopt.post.api.dto.request.PostUpdateDto;
+import org.sopt.post.api.dto.response.PostListResponse;
 import org.sopt.post.api.service.PostService;
+import org.sopt.post.core.domain.Post;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.net.URI;
 
+@RestController
+@RequestMapping("/api")
 public class PostController {
     private final PostService postService;
 
@@ -12,26 +21,49 @@ public class PostController {
         this.postService = postService;
     }
 
-    public boolean createPost(final String title) {
-        return postService.createPost(title);
+    @PostMapping("/posts")
+    public ResponseEntity<Void> createPost(
+            @RequestBody @Valid final PostCreateDto postCreateDto
+    ) {
+        int postId = postService.createPost(postCreateDto);
+        return ResponseEntity.created(URI.create(Long.valueOf(postId).toString())).build();
     }
 
-    public List<Post> getAllPosts() {
-        return postService.getAllPosts();
+    @GetMapping("/posts/{postId}")
+    public ResponseEntity<PostDetailsResponse> getPost (
+            @PathVariable final int postId
+    ) {
+        final Post post = postService.getPostDetails(postId);
+        return ResponseEntity.ok(PostDetailsResponse.from(post));
     }
 
-    public Post getPostById(final int id) {
-        return postService.getPostById(id);
-    }
-    public Boolean updatePostTitle(final int id, final String newTitle) {
-        return postService.updatePostTitle(id, newTitle);
-    }
-
-    public boolean deletePostById(final int id) {
-        return postService.deletePostById(id);
+    // 모든 게시글 조회
+    @GetMapping("/posts")
+    public ResponseEntity<PostListResponse> getPostList() {
+        return ResponseEntity.ok(postService.getAllPosts());
     }
 
-    public List<Post> searchPostsByKeyword(final String keyword) {
-        return postService.searchPostsByKeyword(keyword);
+    @PutMapping("/posts/{postId}")
+    public ResponseEntity<Void> updatePostTitle (
+            @PathVariable final int postId,
+            @RequestBody @Valid final PostUpdateDto postUpdateDto
+    ) {
+        postService.updatePostTitle(postId, postUpdateDto);
+        return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/posts/{postId}")
+    public ResponseEntity<Void> deletePostById (
+            @PathVariable final int postId
+    )
+    {
+        postService.deletePost(postId);
+        return ResponseEntity.noContent().build();
+    }
+
+//    (미구현)
+//    @GetMapping("/post/keyword")
+//    public List<PostEntity> searchPostsByKeyword(final String keyword) {
+//        return postService.searchPostsByKeyword(keyword);
+//    }
 }
