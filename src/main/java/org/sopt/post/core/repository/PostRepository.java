@@ -1,16 +1,12 @@
 package org.sopt.post.core.repository;
 
-import org.sopt.post.core.domain.Post;
+import org.sopt.post.core.domain.PostEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PostRepository {
-    public void save(Post post);
-    public List<Post> findAll();
-    public Post getPostById(int id);
-    public void update(Post post, String newTitle);
-    public void delete(int id);
-    public List<Post> searchPostsByKeyword(String keyword);
-    public boolean existsById(int id);
-    public boolean existByTitle(String title);
+public interface PostRepository extends JpaRepository<PostEntity, Integer> {
+    Optional<PostEntity> findById(final int diaryId);
+    List<PostEntity> findAll();
 }
