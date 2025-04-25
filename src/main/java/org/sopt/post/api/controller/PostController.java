@@ -37,7 +37,6 @@ public class PostController {
         return ResponseEntity.ok(PostDetailsResponse.from(post));
     }
 
-    // 모든 게시글 조회
     @GetMapping("/posts")
     public ResponseEntity<PostListResponse> getPostList() {
         return ResponseEntity.ok(postService.getAllPosts());
@@ -61,7 +60,6 @@ public class PostController {
         return ResponseEntity.noContent().build();
     }
 
-//    (미구현)
 //    @GetMapping("/post/keyword")
 //    public List<PostEntity> searchPostsByKeyword(final String keyword) {
 //        return postService.searchPostsByKeyword(keyword);
