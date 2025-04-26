@@ -9,7 +9,7 @@ public record PostListResponse(
 ) {
     public record PostDto(
             int id,
-            String name
+            String title
     ) {
         public static PostDto from(Post post) {
             return new PostDto(
