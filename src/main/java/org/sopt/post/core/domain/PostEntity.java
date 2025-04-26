@@ -24,11 +24,6 @@ public class PostEntity {
 
     }
 
-    public PostEntity(int id, String title) {
-        this.id = id;
-        this.title = title;
-    }
-
     public PostEntity(String title) {
         this.title = title;
     }
