@@ -64,9 +64,13 @@ public class PostService {
         return postRetriever.findById(postId);
     }
 
-    public PostListResponse getAllPosts() {
-        List<PostListResponse.PostDto> posts = postRetriever.findAllPosts();
-        return new PostListResponse(posts);
+    public PostListResponse getAllPosts(
+            final String keyword
+    ) {
+        List<PostListResponse.PostDto> posts = (keyword == null)
+                ? postRetriever.findAllPosts()
+                : postRetriever.findAllPostsByKeyword(keyword);
+            return new PostListResponse(posts);
     }
 
     @Transactional
