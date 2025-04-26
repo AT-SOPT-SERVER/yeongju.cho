@@ -35,4 +35,11 @@ public class PostRetriever {
                 .map(PostListResponse.PostDto::from)
                 .toList();
     }
+
+    public List<PostListResponse.PostDto> findAllPostsByKeyword(final String keyword) {
+        return postRepository.findByKeyword(keyword).stream()
+                .map(Post::fromEntity)
+                .map(PostListResponse.PostDto::from)
+                .toList();
+    }
 }
