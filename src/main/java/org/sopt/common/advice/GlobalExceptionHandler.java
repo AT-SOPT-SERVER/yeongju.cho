@@ -53,6 +53,14 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(errorCode.getHttpStatus())
-                .body(ResponseDto. fail(errorCode));
+                .body(ResponseDto.fail(errorCode));
+    }
+
+    // 기본 예외
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ResponseDto<Void>> handleException(Exception e){
+        return ResponseEntity
+                .status(GlobalErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus())
+                .body(ResponseDto.fail(GlobalErrorCode.INTERNAL_SERVER_ERROR));
     }
 }
