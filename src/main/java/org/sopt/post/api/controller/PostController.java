@@ -29,39 +29,35 @@ public class PostController {
         return ResponseEntity.created(URI.create(Long.valueOf(postId).toString())).build();
     }
 
-    @GetMapping("/posts/{postId}")
+    @GetMapping("/posts/{post-id}")
     public ResponseEntity<PostDetailsResponse> getPost (
-            @PathVariable final int postId
+            @PathVariable(name = "post-id") final int postId
     ) {
         final Post post = postService.getPostDetails(postId);
         return ResponseEntity.ok(PostDetailsResponse.from(post));
     }
 
     @GetMapping("/posts")
-    public ResponseEntity<PostListResponse> getPostList() {
-        return ResponseEntity.ok(postService.getAllPosts());
+    public ResponseEntity<PostListResponse> getPostList(
+            @RequestParam(required = false) final String keyword
+    ) {
+        return ResponseEntity.ok(postService.getAllPosts(keyword));
     }
 
-    @PutMapping("/posts/{postId}")
+    @PutMapping("/posts/{post-id}")
     public ResponseEntity<Void> updatePostTitle (
-            @PathVariable final int postId,
+            @PathVariable(name = "post-id") final int postId,
             @RequestBody @Valid final PostUpdateDto postUpdateDto
     ) {
         postService.updatePostTitle(postId, postUpdateDto);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/posts/{postId}")
+    @DeleteMapping("/posts/{post-id}")
     public ResponseEntity<Void> deletePostById (
-            @PathVariable final int postId
-    )
-    {
+            @PathVariable(name = "post-id") final int postId
+    ) {
         postService.deletePost(postId);
         return ResponseEntity.noContent().build();
     }
-
-//    @GetMapping("/post/keyword")
-//    public List<PostEntity> searchPostsByKeyword(final String keyword) {
-//        return postService.searchPostsByKeyword(keyword);
-//    }
 }
