@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/posts")
 public class PostController {
     private final PostService postService;
 
@@ -21,7 +21,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/posts")
+    @PostMapping("")
     public ResponseEntity<Void> createPost(
             @RequestBody @Valid final PostCreateDto postCreateDto
     ) {
@@ -29,7 +29,7 @@ public class PostController {
         return ResponseEntity.created(URI.create(Long.valueOf(postId).toString())).build();
     }
 
-    @GetMapping("/posts/{post-id}")
+    @GetMapping("/{post-id}")
     public ResponseEntity<PostDetailsResponse> getPost (
             @PathVariable(name = "post-id") final int postId
     ) {
@@ -37,14 +37,14 @@ public class PostController {
         return ResponseEntity.ok(PostDetailsResponse.from(post));
     }
 
-    @GetMapping("/posts")
+    @GetMapping("")
     public ResponseEntity<PostListResponse> getPostList(
             @RequestParam(required = false) final String keyword
     ) {
         return ResponseEntity.ok(postService.getAllPosts(keyword));
     }
 
-    @PutMapping("/posts/{post-id}")
+    @PutMapping("/{post-id}")
     public ResponseEntity<Void> updatePostTitle (
             @PathVariable(name = "post-id") final int postId,
             @RequestBody @Valid final PostUpdateDto postUpdateDto
@@ -53,7 +53,7 @@ public class PostController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/posts/{post-id}")
+    @DeleteMapping("/{post-id}")
     public ResponseEntity<Void> deletePostById (
             @PathVariable(name = "post-id") final int postId
     ) {
