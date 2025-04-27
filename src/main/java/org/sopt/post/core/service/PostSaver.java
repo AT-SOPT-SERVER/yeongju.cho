@@ -2,7 +2,10 @@ package org.sopt.post.core.service;
 
 import org.sopt.post.core.domain.Post;
 import org.sopt.post.core.domain.PostEntity;
+import org.sopt.post.core.exception.PostCoreErrorCode;
+import org.sopt.post.core.exception.PostDuplicatedException;
 import org.sopt.post.core.repository.PostRepository;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +19,11 @@ public class PostSaver {
 
     @Transactional
     public Post save(final String title) {
-        final PostEntity postEntity = postRepository.save(new PostEntity(title));
-        return Post.fromEntity(postEntity);
+        try {
+            final PostEntity postEntity = postRepository.save(new PostEntity(title));
+            return Post.fromEntity(postEntity);
+        } catch (DataIntegrityViolationException e) {
+            throw new PostDuplicatedException(PostCoreErrorCode.DUPLICATED_POST);
+        }
     }
 }
