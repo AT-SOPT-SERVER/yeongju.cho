@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 public enum PostCoreErrorCode implements ErrorCode {
     // 404
     NOT_FOUND_POST(HttpStatus.NOT_FOUND, 40401, "게시글이 존재하지 않습니다."),
+
+    // 409
+    DUPLICATED_POST(HttpStatus.CONFLICT, 40901, "이미 존재하는 게시글 제목입니다.")
     ;
 
     public final HttpStatus httpStatus;
