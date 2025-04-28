@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<PostEntity, Integer> {
-    Optional<PostEntity> findById(final int diaryId);
+    Optional<PostEntity> findById(int diaryId);
     List<PostEntity> findAll();
 
     @Query("""
@@ -16,5 +16,5 @@ public interface PostRepository extends JpaRepository<PostEntity, Integer> {
         FROM PostEntity p
         WHERE p.title LIKE CONCAT('%', :keyword, '%')
     """)
-    List<PostEntity> findByKeyword(final String keyword);
+    List<PostEntity> findByKeyword(String keyword);
 }
