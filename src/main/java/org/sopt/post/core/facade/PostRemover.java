@@ -1,4 +1,4 @@
-package org.sopt.post.core.service;
+package org.sopt.post.core.facade;
 
 import org.sopt.post.core.domain.PostEntity;
 import org.sopt.post.core.repository.PostRepository;

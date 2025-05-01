@@ -1,26 +1,50 @@
 package org.sopt.post.core.domain;
 
-public class Post {
-    private final int id;
-    private final String title;
 
-    public Post(int id, String title) {
+import java.time.LocalDateTime;
+
+public class Post {
+    private final long id;
+    private final long userId;
+    private final String title;
+    private final String content;
+    private final LocalDateTime createdAt;
+
+    public Post(long id, long userId, String title, String content, LocalDateTime createdAt) {
         this.id = id;
+        this.userId = userId;
         this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
+    }
+
+    public long getUserId(){
+        return userId;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public String getContent(){
+        return content;
+    }
+
+    public LocalDateTime getCreatedAt(){
+        return createdAt;
+    }
+
     public static Post fromEntity(final PostEntity postEntity) {
         return new Post(
                 postEntity.getId(),
-                postEntity.getTitle()
+                postEntity.getUserId(),
+                postEntity.getTitle(),
+                postEntity.getContent(),
+                postEntity.getCreatedAt()
         );
     }
 }

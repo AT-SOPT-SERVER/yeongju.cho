@@ -4,46 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="[refac] Validator 책임 분리">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/ResponseDtoAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/ApiCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/ErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/GlobalErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/code/SuccessCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/constants/PostTableConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/response/ResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostCreateDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostUpdateDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostDetailsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostListResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostConflictException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/PostEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostCoreErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostCoreException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostDuplicatedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/exception/PostNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="[feat] mysql 의존성 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/common/IdGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/config/PostConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/common/constants/PostTableConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/common/constants/PostTableConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/request/PostUpdateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostDetailsResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostDetailsResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/dto/response/PostListResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/exception/PostApiErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/service/PostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/api/utils/PostValidator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostBasicRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostFileRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/PostEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/domain/PostEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRemover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRetriever.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostSaver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/facade/PostRemover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/facade/PostRetriever.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/facade/PostSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/service/PostUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sopt/post/core/facade/PostUpdater.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,9 +55,9 @@
       <list>
         <option value="Kotlin Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -110,7 +88,7 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;seminar2&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;seminar3&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -160,6 +138,9 @@
       <workItem from="1745341984337" duration="67000" />
       <workItem from="1745368099369" duration="4247000" />
       <workItem from="1745501009489" duration="2277000" />
+      <workItem from="1745946352142" duration="18480000" />
+      <workItem from="1746098415490" duration="118000" />
+      <workItem from="1746112210080" duration="469000" />
     </task>
     <task id="LOCAL-00001" summary="[refac] 객체 한 번씩만 생성하도록 수정">
       <option name="closed" value="true" />
