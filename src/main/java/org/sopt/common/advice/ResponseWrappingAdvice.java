@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @RestControllerAdvice(
         basePackages = "org.sopt"
 )
-public class ResponseDtoAdvice implements ResponseBodyAdvice<Object> {
+public class ResponseWrappingAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, @NonNull Class converterType) {
         return !(returnType.getParameterType() == ResponseDto.class)
