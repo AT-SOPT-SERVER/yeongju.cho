@@ -1,4 +1,4 @@
-package org.sopt.post.core.service;
+package org.sopt.post.core.facade;
 
 import org.sopt.post.core.domain.Post;
 import org.sopt.post.core.domain.PostEntity;
@@ -18,9 +18,9 @@ public class PostSaver {
     }
 
     @Transactional
-    public Post save(final String title) {
+    public Post save(final long userId, final String title, final String content) {
         try {
-            final PostEntity postEntity = postRepository.save(new PostEntity(title));
+            final PostEntity postEntity = postRepository.save(new PostEntity(userId, title, content));
             return Post.fromEntity(postEntity);
         } catch (DataIntegrityViolationException e) {
             throw new PostDuplicatedException(PostCoreErrorCode.DUPLICATED_POST);

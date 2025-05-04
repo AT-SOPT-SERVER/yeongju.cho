@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 
 public enum PostApiErrorCode implements ErrorCode {
 
+    // 403
+    FORBIDDEN_POST(HttpStatus.FORBIDDEN, 40301, "해당 게시글에 접근할 수 있는 권한이 없습니다."),
+
     // 409
     CONFLICT_DUPLICATE_TITLE(HttpStatus.CONFLICT,40901, "중복되는 제목입니다."),
     CONFLICT_CREATE_LIMIT(HttpStatus.CONFLICT,40902, "작성 시간이 제한됩니다."),

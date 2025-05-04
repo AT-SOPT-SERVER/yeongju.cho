@@ -1,4 +1,4 @@
-package org.sopt.post.core.service;
+package org.sopt.post.core.facade;
 
 import org.sopt.post.api.dto.request.PostUpdateDto;
 import org.sopt.post.core.domain.PostEntity;

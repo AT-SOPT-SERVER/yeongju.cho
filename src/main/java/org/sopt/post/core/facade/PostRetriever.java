@@ -1,4 +1,4 @@
-package org.sopt.post.core.service;
+package org.sopt.post.core.facade;
 
 import org.sopt.post.api.dto.response.PostListResponse;
 import org.sopt.post.core.domain.Post;
@@ -18,28 +18,30 @@ public class PostRetriever {
         this.postRepository = postRepository;
     }
 
-    public Post findById(final int postId) {
-        final PostEntity postEntity = postRepository.findById(postId)
+    public Post findById(final long userId, final long postId) {
+        final PostEntity postEntity = postRepository.findByUserIdAndId(userId, postId)
                 .orElseThrow(()-> new PostNotFoundException(PostCoreErrorCode.NOT_FOUND_POST));
         return Post.fromEntity(postEntity);
     }
 
-    public PostEntity findEntityById(final int postId) {
-        return postRepository.findById(postId)
+    public PostEntity findEntityById(final long userId, final long postId) {
+        return postRepository.findByUserIdAndId(userId, postId)
                 .orElseThrow(()-> new PostNotFoundException(PostCoreErrorCode.NOT_FOUND_POST));
     }
 
-    public List<PostListResponse.PostDto> findAllPosts(){
-        return postRepository.findAll().stream()
+    public List<Post> findAllOrderByCreatedAtDesc() {
+        return postRepository.findAllOrderByCreatedAtDesc().stream()
                 .map(Post::fromEntity)
-                .map(PostListResponse.PostDto::from)
                 .toList();
     }
 
-    public List<PostListResponse.PostDto> findAllPostsByKeyword(final String keyword) {
-        return postRepository.findByKeyword(keyword).stream()
-                .map(Post::fromEntity)
-                .map(PostListResponse.PostDto::from)
-                .toList();
-    }
+    /*
+     아직 미구현
+     */
+//    public List<PostListResponse.PostDto> findAllPostsByKeyword(final String keyword) {
+//        return postRepository.findByKeyword(keyword).stream()
+//                .map(Post::fromEntity)
+//                .map(PostListResponse.PostDto::from)
+//                .toList();
+//    }
 }
