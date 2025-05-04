@@ -19,10 +19,10 @@ public class PostEntity {
     @Id
     @Column(name = COLUMN_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = COLUMN_USER_ID)
-    private long userId;
+    private Long userId;
 
     @Column(name = COLUMN_TITLE, nullable = false)
     private String title;

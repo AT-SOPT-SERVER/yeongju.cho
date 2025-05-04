@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="[feat] Post 관련">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dca8429f-b831-434a-b92d-230d1f4e8c18" name="Changes" comment="[chore] 불필요한 import 문 삭제" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,6 +125,7 @@
       <workItem from="1746112210080" duration="2374000" />
       <workItem from="1746195036894" duration="2429000" />
       <workItem from="1746368476788" duration="148000" />
+      <workItem from="1746371431234" duration="2947000" />
     </task>
     <task id="LOCAL-00001" summary="[refac] 객체 한 번씩만 생성하도록 수정">
       <option name="closed" value="true" />
@@ -168,7 +167,31 @@
       <option name="project" value="LOCAL" />
       <updated>1746113380506</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[refac] 네이밍 수정">
+      <option name="closed" value="true" />
+      <created>1746372698791</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746372698791</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[refac] ResponseEntity 는 그대로 반환">
+      <option name="closed" value="true" />
+      <created>1746373585607</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746373585607</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[chore] 불필요한 import 문 삭제">
+      <option name="closed" value="true" />
+      <created>1746373609495</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746373609495</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +214,10 @@
     <MESSAGE value="[feat] User 도메인 구현" />
     <MESSAGE value="[feat] User 도메인 단 예외처리" />
     <MESSAGE value="[feat] Post 관련" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] Post 관련" />
+    <MESSAGE value="[refac] 네이밍 수정" />
+    <MESSAGE value="[refac] ResponseEntity 는 그대로 반환" />
+    <MESSAGE value="[chore] 불필요한 import 문 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="[chore] 불필요한 import 문 삭제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
