@@ -1,7 +1,6 @@
 package org.sopt.common.advice;
 
 import lombok.NonNull;
-import org.sopt.common.code.ErrorCode;
 import org.sopt.common.response.ResponseDto;
 import org.sopt.common.code.SuccessCode;
 import org.springframework.core.MethodParameter;
