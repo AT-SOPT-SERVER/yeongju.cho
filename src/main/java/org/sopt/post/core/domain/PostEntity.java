@@ -1,77 +1,75 @@
 package org.sopt.post.core.domain;
 
 import jakarta.persistence.*;
-import org.sopt.common.constants.PostTableConstants;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.sopt.common.domain.BaseTimeEntity;
 
-import java.time.LocalDateTime;
-
-import static org.sopt.common.constants.PostTableConstants.*;
+import static org.sopt.post.core.domain.PostTableConstants.*;
 
 @Entity
-@Table(
-        name = PostTableConstants.TABLE_POST,
-        indexes = {
-                @Index(name = "uk1", columnList = "title", unique = true)
-        }
-)
-public class PostEntity {
+@Table(name = TABLE_POST, indexes = {
+        @Index(name = "idx_post_title", columnList = "title", unique = true)
+})
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+public class PostEntity extends BaseTimeEntity {
 
     @Id
     @Column(name = COLUMN_ID)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = COLUMN_USER_ID)
+    @Column(name = COLUMN_USER_ID, nullable = false)
     private Long userId;
 
     @Column(name = COLUMN_TITLE, nullable = false)
     private String title;
 
-    @Column(name = COLUMN_CONTENT)
+    @Column(name = COLUMN_CONTENT, nullable = false)
     private String content;
 
-    @Column(name = COLUMN_CREATED_AT, nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    protected PostEntity(){
-
-    }
-
-    public PostEntity(long userId, String title, String content) {
+    private PostEntity(Long userId, String title, String content) {
         this.userId = userId;
         this.title = title;
         this.content = content;
     }
 
-    public void updateTitle(String newTitle) {
+    // 신규 저장용
+    public static PostEntity forCreate(Post post) {
+        return new PostEntity(
+                post.getUserId(),
+                post.getTitle(),
+                post.getContent());
+    }
+
+    // Entity -> Domain
+    public Post toDomain() {
+        return Post.builder()
+                .id(id)
+                .userId(userId)
+                .title(title)
+                .content(content)
+                .createdAt(getCreatedAt())
+                .updatedAt(getUpdatedAt())
+                .build();
+    }
+
+//    // Domain -> Entity (조회 및 수정)
+//    public static PostEntity fromDomain(Post post) {
+//        return new PostEntity(
+//                post.getId(),
+//                post.getUserId(),
+//                post.getTitle(),
+//                post.getContent());
+//    }
+
+    public void update(String newTitle, String newContent) {
         this.title = newTitle;
+        this.content = newContent;
     }
 
-    public void updateContent(String content) {
-        this.content = content;
-    }
-
-    public long getId() {
-        return this.id;
-    }
-    public long getUserId(){
-        return userId;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public String getContent(){
-        return this.content;
-    }
-
-    public LocalDateTime getCreatedAt(){
-        return createdAt;
-    }
 }
