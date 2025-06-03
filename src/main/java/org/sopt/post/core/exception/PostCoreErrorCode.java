@@ -1,8 +1,10 @@
 package org.sopt.post.core.exception;
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.common.code.ErrorCode;
 import org.springframework.http.HttpStatus;
 
+@RequiredArgsConstructor
 public enum PostCoreErrorCode implements ErrorCode {
     // 404
     NOT_FOUND_POST(HttpStatus.NOT_FOUND, 40401, "게시글이 존재하지 않습니다."),
@@ -14,12 +16,6 @@ public enum PostCoreErrorCode implements ErrorCode {
     public final HttpStatus httpStatus;
     private final int code;
     private final String message;
-
-    PostCoreErrorCode(HttpStatus httpStatus, int code, String message) {
-        this.httpStatus = httpStatus;
-        this.code = code;
-        this.message =  message;
-    }
 
     @Override
     public HttpStatus getHttpStatus(){

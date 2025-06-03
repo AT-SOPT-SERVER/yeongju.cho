@@ -1,9 +1,11 @@
 package org.sopt.post.api.exception;
 
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.common.code.ErrorCode;
 import org.springframework.http.HttpStatus;
 
+@RequiredArgsConstructor
 public enum PostApiErrorCode implements ErrorCode {
 
     // 403
@@ -17,12 +19,6 @@ public enum PostApiErrorCode implements ErrorCode {
     public final HttpStatus httpStatus;
     private final int code;
     private final String message;
-
-    PostApiErrorCode(HttpStatus httpStatus, int code, String message) {
-        this.httpStatus = httpStatus;
-        this.code = code;
-        this.message =  message;
-    }
 
     @Override
     public HttpStatus getHttpStatus(){
