@@ -1,20 +1,12 @@
 package org.sopt.user.core.exception;
 
 import org.sopt.common.code.ErrorCode;
-import org.springframework.http.HttpStatus;
+import org.sopt.user.api.exception.UserBaseException;
 
-public abstract class UserCoreException extends RuntimeException{
-
-    private final ErrorCode errorCode;
+public abstract class UserCoreException extends UserBaseException {
 
     protected UserCoreException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.errorCode = errorCode;
+        super(errorCode);
     }
 
-    public ErrorCode getErrorCode(){
-        return errorCode;
-    }
-
-    public abstract HttpStatus getStatus();
 }
