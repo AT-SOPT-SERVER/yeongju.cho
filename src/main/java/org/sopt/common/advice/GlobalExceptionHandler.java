@@ -1,11 +1,11 @@
 package org.sopt.common.advice;
 
+import org.sopt.auth.api.exception.AuthBaseException;
 import org.sopt.common.code.ErrorCode;
 import org.sopt.common.code.GlobalErrorCode;
-import org.sopt.post.api.exception.PostApiException;
 import org.sopt.common.response.ResponseDto;
-import org.sopt.post.core.exception.PostCoreException;
-import org.sopt.user.core.exception.UserCoreException;
+import org.sopt.post.api.exception.PostBaseException;
+import org.sopt.user.api.exception.UserBaseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,22 +19,22 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(UserCoreException.class)
-    public ResponseEntity<ResponseDto<Void>> handleUserCoreException(UserCoreException e) {
+    @ExceptionHandler(AuthBaseException.class)
+    public ResponseEntity<ResponseDto<Void>> handleAuthBaseException(AuthBaseException e) {
         return ResponseEntity
                 .status(e.getStatus())
                 .body(ResponseDto.fail(e.getErrorCode()));
     }
 
-    @ExceptionHandler(PostApiException.class)
-    public ResponseEntity<ResponseDto<Void>> handlePostApiException(PostApiException e) {
+    @ExceptionHandler(UserBaseException.class)
+    public ResponseEntity<ResponseDto<Void>> handleUserCoreException(UserBaseException e) {
         return ResponseEntity
                 .status(e.getStatus())
                 .body(ResponseDto.fail(e.getErrorCode()));
     }
 
-    @ExceptionHandler(PostCoreException.class)
-    public ResponseEntity<ResponseDto<Void>> handlePostCoreException(PostCoreException e) {
+    @ExceptionHandler(PostBaseException.class)
+    public ResponseEntity<ResponseDto<Void>> handlePostBaseException(PostBaseException e) {
         return ResponseEntity
                 .status(e.getStatus())
                 .body(ResponseDto.fail(e.getErrorCode()));
