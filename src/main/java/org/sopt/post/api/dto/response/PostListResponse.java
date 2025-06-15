@@ -9,11 +9,13 @@ public record PostListResponse(
         List<PostDto> postsLists
 ) {
     public record PostDto(
+            long postId,
             String title,
             String nickname
     ) {
         public static PostDto from(Post post, String nickname) {
             return new PostDto(
+                    post.getId(),
                     post.getTitle(),
                     nickname
             );
