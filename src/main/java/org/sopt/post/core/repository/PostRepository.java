@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface PostRepository extends JpaRepository<PostEntity, Integer> {
+public interface PostRepository extends JpaRepository<PostEntity, Long> {
     Optional<PostEntity> findByUserIdAndId(Long userId, Long postId);
     List<PostEntity> findAll();
 

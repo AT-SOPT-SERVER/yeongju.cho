@@ -1,5 +1,6 @@
 package org.sopt.post.api.service;
 
+import lombok.RequiredArgsConstructor;
 import org.sopt.post.api.dto.request.PostUpdateDto;
 import org.sopt.post.api.dto.response.PostListResponse;
 import org.sopt.post.api.exception.PostConflictException;
@@ -22,50 +23,35 @@ import java.util.Map;
 
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class PostService {
 
     private final UserFacade userFacade;
-//    private LocalDateTime lastCreateTime = null;
     private final PostRemover postRemover;
     private final PostRetriever postRetriever;
     private final PostUpdater postUpdater;
     private final PostSaver postSaver;
-
-    public PostService(UserFacade userFacade, PostRemover postRemover, PostRetriever postRetriever, PostUpdater postUpdater, PostSaver postSaver) {
-        this.userFacade = userFacade;
-        this.postRemover = postRemover;
-        this.postRetriever = postRetriever;
-        this.postUpdater = postUpdater;
-        this.postSaver = postSaver;
-    }
 
     @Transactional
     public long createPost(final long userId, PostCreateDto postCreateDto) {
 
         userFacade.findUser(userId);
 
-//        if (!checkLatest3Minute()) {
-//            throw new PostConflictException(PostErrorCode.CONFLICT_CREATE_LIMIT);
-//        }
+        final Post postToCreate = Post.builder()
+                .userId(userId)
+                .title(postCreateDto.title())
+                .content(postCreateDto.content())
+                .build();
 
-        final Post createPost;
         try {
-            createPost = postSaver.save(userId, postCreateDto.title(), postCreateDto.content());
+            Post createdPost = postSaver.save(postToCreate);
+            return createdPost.getId();
         } catch (PostDuplicatedException e) {
             throw new PostConflictException(PostApiErrorCode.CONFLICT_DUPLICATE_TITLE);
         }
-//        lastCreateTime = LocalDateTime.now();
-        return createPost.getId();
     }
 
-//    public boolean checkLatest3Minute() {
-//        if (lastCreateTime == null) return true;
-//
-//        LocalDateTime now = LocalDateTime.now();
-//        return java.time.Duration.between(lastCreateTime, now).getSeconds() >= 180;
-//    }
-
-    public Post getPostDetails(final long userId, final int postId) {
+    public Post getPostDetails(final long userId, final long postId) {
         validatePostOwner(userId, postId);
         return postRetriever.findById(userId, postId);
     }
@@ -83,30 +69,35 @@ public class PostService {
     }
 
     @Transactional
-    public void updatePostTitle (
+    public void updatePost (
             final long userId,
-            final int postId,
+            final long postId,
             final PostUpdateDto postUpdateDto
     ) {
-        PostEntity postEntity = validatePostOwner(userId, postId);
-        postUpdater.updatePost(postEntity, postUpdateDto);
+        Post originalPost = validatePostOwner(userId, postId);
+        Post updatedPost = originalPost.update(
+                postUpdateDto.newTitle() != null ? postUpdateDto.newTitle() : originalPost.getTitle(),
+                postUpdateDto.newContent() != null ? postUpdateDto.newContent() : originalPost.getContent()
+        );
+
+        postUpdater.updatePost(updatedPost);
     }
 
     @Transactional
     public void deletePost (
             final long userId,
-            final int postId
+            final long postId
     ) {
-        PostEntity postEntity = validatePostOwner(userId, postId);
-        postRemover.deletePost(postEntity);
+        Post post = validatePostOwner(userId, postId);
+        postRemover.deletePost(post);
     }
 
-    private PostEntity validatePostOwner(final long userId, final int postId) {
+    private Post validatePostOwner(final long userId, final long postId) {
         userFacade.findUser(userId);
-        PostEntity postEntity = postRetriever.findEntityById(userId, postId);
-        if (postEntity.getUserId() != userId) {
+        Post post = postRetriever.findById(userId, postId);
+        if (post.getUserId() != userId) {
             throw new PostForBiddenException(PostApiErrorCode.FORBIDDEN_POST);
         }
-        return postEntity;
+        return post;
     }
 }
